@@ -5,9 +5,9 @@ import { useCallback, useState } from 'react';
 import { User } from "@prisma/client"
 import { signOut } from "next-auth/react"
 import MenuItem from '@/app/components/navbar/MenuItem'
-import Avatar from '../Avatar';
-import useLogalModal from '@/app/components/modals/modal'
-
+import Avatar from '@/app/components/Avatar';
+import useLoginModal from '@/app/components/hoooooks/useLoginModal';
+import useRegisterModal from '@/app/components/hoooooks/Useregistermodal';
 
 interface UserMenuProps {
     currentUser?: User | null
@@ -16,7 +16,8 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({
     currentUser
 }) => { 
-    const loginModal = useLogalModal();
+    const registerModal = useRegisterModal()
+    const loginModal = useLoginModal()
     const [isOpen, setIsOpen] = useState(false)
 
     const toggleOpen = useCallback(() => {
