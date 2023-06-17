@@ -2,6 +2,6 @@
 
 export default function Home() {
   return ( 
-    <div>Loading ...</div>
+    <div_loading></div_loading>
   )
 }
