@@ -1,6 +1,6 @@
 
 import { getServerSession } from 'next-auth'
-import { AuthOptions } from '@/pages/api/auth/[...nnextauth]'
+import { authOptions } from '@/pages/api/auth/[...nnextauth]'
 
 export default async function getCurrentUser() {
 
