@@ -4,6 +4,9 @@ import { AiOutlineBars } from 'react-icons/ai'
 import { useCallback, useState } from 'react'; 
 import { User } from "@prisma/client"
 import { signOut } from "next-auth/react"
+import MenuItem from '@/app/components/navbar/MenuItem'
+import Avatar from '../Avatar';
+
 
 interface UserMenuProps {
     currentUser?: User | null
@@ -97,13 +100,13 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         </>
                         ) : (
                             <>
-                                <MenuItem
-                                    onClick={loginModal.onOpen}
+                                   <MenuItem
+                               onClick={()=> ''}
                                     label="Login" 
                                 />
                                 <MenuItem
-                                    onClick={registerModal.onOpen}
-                                    label="Sing in" 
+                                    onClick={()=> ''}
+                                    label="Register" 
                                 />
                             </>
                         )}

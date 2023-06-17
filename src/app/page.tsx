@@ -1,7 +1,9 @@
- 
+import div_loading from "./components/div_loading"
+
 
 export default function Home() {
   return ( 
-    <div_loading></div_loading>
+    <div>Loading...</div>
   )
 }
+

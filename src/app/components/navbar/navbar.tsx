@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Logo from "./logo";
 import { User } from '@prisma/client'
 import Container from "../Container";
+import UserMenu from "./useroptions";
 interface NavbarProps {
     currentUser?: User | null
 }
@@ -29,6 +30,7 @@ const Navbar : React.FC<NavbarProps> = ({
                         "
                     >
                         <Logo />
+                        <UserMenu currentUser={currentUser}></UserMenu>
                         </div>
                 </Container>
            
