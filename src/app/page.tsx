@@ -1,9 +1,8 @@
 import Image from 'next/image'
+import Logo from './components/navbar/logo'
 
 export default function Home() {
   return ( 
-    <div className="text-blue-700	text-2xl">
-      Working ...
-    </div>
+    <Logo></Logo>
   )
 }
