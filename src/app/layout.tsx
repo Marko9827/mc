@@ -19,7 +19,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ClientOnly> 
-          <Navbar currentUser={currentUser} ></Navbar>
+          <Navbar currentUser={currentUser} />
         </ClientOnly>
         {children}</body>
     </html>
