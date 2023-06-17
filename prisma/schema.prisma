@@ -11,21 +11,23 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  admin Int?
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  name     String?
+  admin    Int?
   Products Product[]
 }
 
 model Product {
   id        Int     @id @default(autoincrement())
-  os     String
-  ram String
-  ssd String 
-  screen String 
-  networks String
-  category Int
+  os        String
+  ram       String
+  ssd       String
+  screen    String
+  price     String
+  image     Bytes
+  networks  String
+  category  Int
   published Boolean @default(false)
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
