@@ -1,8 +1,8 @@
 import ClientOnly from './components/clientOnly'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import navbar from './components/navbar/navbar'
-
+import Navbar from './components/navbar/navbar'
+import getCurrentUser from './actions/getCurrentUser'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -15,10 +15,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const currentUser = await getCurrentUser()
   return (
     <html lang="en">
       <body className={inter.className}>
         <ClientOnly> 
+          <Navbar currentUser={currentUser} ></Navbar>
         </ClientOnly>
         {children}</body>
     </html>

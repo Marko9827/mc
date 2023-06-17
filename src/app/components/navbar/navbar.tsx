@@ -2,19 +2,21 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
-const Logo = () => {
-    const router = useRouter();
-
-    return (
-        <Image
-            alt="logo"
-            className="hidden md:block cursor-pointer"
-            height="100"
-            width="100"
-            src="/img/logo.png"
-        />
-    )
+import Logo from "./logo";
+import { User } from '@prisma/client'
+interface NavbarProps {
+    currentUser?: User | null
 }
 
-export default Logo;
+const Navbar : React.FC<NavbarProps> = ({
+    currentUser
+}) => {
+ 
+    return (
+        <div className="fixed w-full bg-white z-10 shadow-sm">
+            aer
+            aerearaerearea
+        </div>
+    )
+}
+export default Navbar
