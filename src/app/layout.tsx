@@ -10,7 +10,7 @@ export const metadata = {
   description: 'Mobi e-katalog telefona',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
