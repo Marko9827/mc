@@ -14,8 +14,10 @@ const Navbar : React.FC<NavbarProps> = ({
  
     return (
         <div className="fixed w-full bg-white z-10 shadow-sm">
-            aer
-            aerearaerearea
+            <div className="
+            py-5 border-b-[2px]">
+                <Logo />
+            </div>
         </div>
     )
 }
