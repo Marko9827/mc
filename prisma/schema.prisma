@@ -13,8 +13,12 @@ datasource db {
 model User {
   id       Int       @id @default(autoincrement())
   email    String    @unique
+  emailVerifed DateTime?
   name     String?
   admin    Int?
+  hashedPasword String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   Products Product[]
 }
 
@@ -22,7 +26,7 @@ model Product {
   id        Int     @id @default(autoincrement())
   os        String
   ram       String
-  ssd       String
+  ssd       String // memorija telefona
   screen    String
   price     String
   image     Bytes
