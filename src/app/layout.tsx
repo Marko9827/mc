@@ -3,8 +3,8 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Navbar from "./components/navbar/navbar";
 import getCurrentUser from "./actions/getCurrentUser";
-import LoginModal from "@/app/components/modals/LoginModal";
-import RegisterModal from "@/app/components/modals/Registermodal";
+import LoginModal from     "@/src/app/components/modals/LoginModal";
+import RegisterModal from  "@/src/app/components/modals/Registermodal";
 import ToasterProvider from "./components/toast";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {

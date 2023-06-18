@@ -1,10 +1,10 @@
 'use client'
 
-import useRegisterModal from '@/app/components/hoooooks/Useregistermodal'
+import useRegisterModal from '@/src/app/components/hoooooks/Useregistermodal'
 import { useCallback, useState } from "react" 
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import axios from 'axios';
-import Button from '@/app/components/Butoon'
+import Button from '@/src/app/components/Butoon'
 import Heading from '../Heading'; 
 import { toast } from 'react-hot-toast'
 import Input from '../input/input';

@@ -4,10 +4,10 @@ import { AiOutlineBars } from 'react-icons/ai'
 import { useCallback, useState } from 'react'; 
 import { User } from "@prisma/client"
 import { signOut } from "next-auth/react"
-import MenuItem from '@/app/components/navbar/MenuItem'
-import Avatar from '@/app/components/Avatar';
-import useLoginModal from '@/app/components/hoooooks/useLoginModal';
-import useRegisterModal from '@/app/components/hoooooks/Useregistermodal';
+import MenuItem from         '@/src/app/components/navbar/MenuItem'
+import Avatar from           '@/src/app/components/Avatar';
+import useLoginModal from    '@/src/app/components/hoooooks/useLoginModal';
+import useRegisterModal from '@/src/app/components/hoooooks/Useregistermodal';
 
 interface UserMenuProps {
     currentUser?: User | null

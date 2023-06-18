@@ -14,7 +14,7 @@ export const authOptions: AuthOptions = {
         email: { label: "email", type: "text" },
         password: { label: "password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials){
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Please type correct password and email");
         }

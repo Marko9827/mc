@@ -1,7 +1,7 @@
 'use client'
 
 import { signIn } from "next-auth/react"
-import Modal from '@/app/components/modals/modal'
+import Modal from '@/src/app/components/modals/modal'
 
 import { useRouter } from "next/navigation"
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
@@ -10,6 +10,7 @@ import useLoginModal from "../hoooooks/useLoginModal"
 import { useState } from "react"
 import Input from "../input/input"
 import Heading from "../Heading"
+import { toast } from 'react-hot-toast'
 
 const LoginModal = () => {
     const router = useRouter();
@@ -39,9 +40,12 @@ const LoginModal = () => {
             setIsLoading(false)
 
             if(callback?.ok){
-               
+               toast.success("Login complete")
+               router.refresh();
+               loginModal.onClose()
             }
             if(callback?.error){ 
+                toast.error(callback.error)
             }
         })
     } 
