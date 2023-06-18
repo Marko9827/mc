@@ -45,7 +45,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         cursor-pointer                   
                     "
                 >
-                    Your phones
+                  Add new phone
                 </div>
                 <div
                     onClick={toggleOpen}
@@ -92,7 +92,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                             {currentUser.admin == 1 ? (<><MenuItem
                                 onClick={add_me.isOpen}
                                 label="Admin" 
-                            /></>):(<></>)}
+                            /><hr /></>):(<></>)}
                             <MenuItem
                                 onClick={() => {}}
                                 label="Your phones" 
