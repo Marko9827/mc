@@ -1,3 +1,3 @@
 npm run dev
-cd serverside 
-npm run start
+cd ./serverside 
+npm run  start

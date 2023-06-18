@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "run":" ./run.sh",
+    "start2":" ./run.sh",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
