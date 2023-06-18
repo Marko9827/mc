@@ -8,9 +8,15 @@ import Button from '@/src/app/components/Butoon'
 import Heading from '../Heading'; 
 import { toast } from 'react-hot-toast'
 import Input from '../input/input';
+import { User } from '@prisma/client';
 import Modal from './modal';
-const RegisterModal = () => {
-
+interface NavbarProps {
+    currentUser?: User | null
+}
+const RegisterModal: React.FC<NavbarProps> = ({
+    currentUser
+}) =>  {
+    
     const registerModal = useRegisterModal(); 
     const [isLoading, setIsLoading] = useState(false);
 

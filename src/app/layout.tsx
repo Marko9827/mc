@@ -23,8 +23,11 @@ export default async function RootLayout({
       <body className={inter.className}>
         <ClientOnly>
           <ToasterProvider />
-          <LoginModal />
+          {!currentUser ? (<>
+          <LoginModal   />
           <RegisterModal />
+          </>
+  ) : (<></>)}
           <Navbar currentUser={currentUser} />
         </ClientOnly>
         {children}

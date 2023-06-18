@@ -1,29 +1,27 @@
 'use client'
 
-import { User } from "@prisma/client"
 import { useEffect, useState } from "react"
+import { User } from "@prisma/client"
 
-interface ClientOnlyProps {
+ interface ClientOnlyProps {
     children: React.ReactNode,
     
 }
 interface UserMenuProps {
     currentUser?: User | null
 }
-const ClientOnly: React.FC<ClientOnlyProps> = ({
+const isAdmin: React.FC<[UserMenuProps,ClientOnlyProps]> = ([
+    currentUser,
     children
-}) => {
+]) => {
 
     const [hasMounted, setHasMounted] = useState(false)
 
     useEffect(() => {
         setHasMounted(true)
     }, [])
-
-    if(!hasMounted) {
-        return null
-    }
-
+    
+    
     return (
         <>
             {children}
@@ -31,4 +29,4 @@ const ClientOnly: React.FC<ClientOnlyProps> = ({
     )
 }
 
-export default ClientOnly
+export default isAdmin

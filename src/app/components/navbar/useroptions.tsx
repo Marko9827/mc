@@ -8,6 +8,7 @@ import MenuItem from         '@/src/app/components/navbar/MenuItem'
 import Avatar from           '@/src/app/components/Avatar';
 import useLoginModal from    '@/src/app/components/hoooooks/useLoginModal';
 import useRegisterModal from '@/src/app/components/hoooooks/Useregistermodal';
+import isAdmin from '@/src/app/components/isAdmin'
 
 interface UserMenuProps {
     currentUser?: User | null
@@ -86,6 +87,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     <div className=" flex flex-col cursor-pointer">
                         {currentUser ? (
                             <>
+                            
                             <MenuItem
                                 onClick={() => {}}
                                 label="Your phones" 
