@@ -1,8 +1,12 @@
+const multer = require("multer");
+
 const express = require("express"),
   app = express(),
   mysql = require("mysql"),
   cors = require("cors"),
   PORT = 3001,
+  path = require("path"),
+  storage = require("multer"),
   morgan = require('morgan');
   app.use(cors());
  
@@ -32,11 +36,21 @@ const express = require("express"),
   
   
   
+  const storage = multer.diskStorage({
+destination: (req,file,cb) => {
+  db(null,'public/upload')
+},
+filename: (req,file,cb) => {
+  db(null, file.filename + "_"+Date.now() + path.extname(file.originalname));
+}
+  });
+  
+  const upload = multer({
+    storage: storage
+  })
   
   
-  
-  
-  app.post('/product_add',(req,res)=>{
+  app.post('/product_add',upload.single("image"), (req,res)=>{
     const os = req.body?.os ,
       ram = req.body?.ram ,
       ssd = req.body?.ssd,

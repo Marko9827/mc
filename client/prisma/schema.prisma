@@ -54,9 +54,10 @@ model Product {
   price     String 
   networks  String
   category  String
+  image     String 
   published Boolean @default(false)
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
-  image     Bytes 
+  
 }
     
