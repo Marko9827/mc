@@ -1,3 +1,3 @@
-npm update
-npm install
-npm start
+npm run dev
+cd serverside 
+npm run start
