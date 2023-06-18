@@ -8,6 +8,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import useRegisterModal from "../hoooooks/Useregistermodal" 
 import useLoginModal from "../hoooooks/useLoginModal"
 import { useState } from "react"
+import Input from "../input/input"
 
 const LoginModal = () => {
     const router = useRouter();
@@ -57,7 +58,7 @@ const LoginModal = () => {
                 required
             />
             
-            <Inputt
+            <Input
                 id="password"
                 type="password"
                 label="Password"
