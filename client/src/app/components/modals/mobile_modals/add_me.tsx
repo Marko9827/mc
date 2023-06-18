@@ -31,7 +31,6 @@ const Add_me: React.FC<UserAddProps> = ({
       screen: "",
       networks: "",
       category: "",
-      published: "",
       authorId: currentUser?.id,
       price: "",
     },

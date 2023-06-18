@@ -37,18 +37,17 @@ const express = require("express"),
   
   
   app.post('/product_add',(req,res)=>{
-    const os = req.body?.os | "",
-      ram = req.body?.ram | 0,
-      ssd = req.body?.ssd | 0,
-      screen = req.body?.screen | "00x00",
-      network = req.body?.networks | "",
-      category = req.body?.category | "",
-      published = req.body?.published | "",
+    const os = req.body?.os ,
+      ram = req.body?.ram ,
+      ssd = req.body?.ssd,
+      screen = req.body?.screen ,
+      networks = req.body?.networks ,
+      category = req.body?.category ,
       authorId = req.body?.authorId | 0,
-      price = req.body?.price | 0;  
+      price = req.body?.price ;  
 
     con.query(`INSERT INTO product (os, ram, ssd, screen, networks, category, authorId, price) VALUES 
-    ('${os}','${ram}', '${ssd}', '${screen}', '${network}', '${category}', '${authorId}', '${price}');`,(err,result)=>{
+    ('${os}','${ram}', '${ssd}', '${screen}', '${networks}', '${category}', '${authorId}', '${price}');`,(err,result)=>{
         if(err){
           res.send("Error :(");
           console.log(err);
