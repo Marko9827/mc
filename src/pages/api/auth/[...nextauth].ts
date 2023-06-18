@@ -1,10 +1,9 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth, { AuthOptions } from "next-auth";
-import prisma from "@/app/libs/prismadb";
+import prisma from "@/src/app/libs/prismadb"; 
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
-
-import lang from "@/app/actions/lang_en";
+ 
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -32,6 +31,9 @@ export const authOptions: AuthOptions = {
           credentials.password,
           user.hashedPasword
         );
+        if(!isCorrectPassword){
+          throw new Error("Password is not valid")
+        }
         return user;
       },
     }),

@@ -29,7 +29,7 @@ const Navbar : React.FC<NavbarProps> = ({
                             md:gap-0
                         "
                     >
-                        <Logo />
+                        <Logo /> 
                         <UserMenu currentUser={currentUser}></UserMenu>
                         </div>
                 </Container>

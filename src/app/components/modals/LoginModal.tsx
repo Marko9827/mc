@@ -44,11 +44,7 @@ const LoginModal = () => {
             if(callback?.error){ 
             }
         })
-    }
-
-    const registerFromLogin = function(){
-  
-    }
+    } 
 
     const bodyContent = (
         <div className="flex flex-col gap-5">
