@@ -13,9 +13,8 @@
 /.eronelit
 
 # next.js
-/.next/
-/out/
-
+.next/
+/out/ 
 # production
 /build
 
@@ -38,7 +37,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-/client/.next
-/server/.next
-
  

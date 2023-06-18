@@ -87,7 +87,10 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     <div className=" flex flex-col cursor-pointer">
                         {currentUser ? (
                             <>
-                            
+                            {currentUser.admin == 1 ? (<><MenuItem
+                                onClick={() => {}}
+                                label="Admin" 
+                            /></>):(<></>)}
                             <MenuItem
                                 onClick={() => {}}
                                 label="Your phones" 

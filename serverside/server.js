@@ -1,8 +1,8 @@
 const express = require("express"),
   app = express(),
   mysql = require("mysql"),
-  cors = require("cors");
-
+  cors = require("cors"),
+  PORT = 3001; 
   app.use(cors());
   app.options('*', cors());
 
@@ -15,6 +15,7 @@ const express = require("express"),
     database: process.env.DB_NAME,
     password: process.env.DB_PASS
   });
+ 
 
   con.connect(function(err){
     if(err){
@@ -23,4 +24,9 @@ const express = require("express"),
       console.log("SQL OK.");
     }
   })
+  app.listen(PORT, () =>{
+    console.log(`Server start at http://localhost:${PORT}/`);
+  });
+
+  
  
