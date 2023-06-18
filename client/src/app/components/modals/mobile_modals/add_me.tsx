@@ -116,7 +116,8 @@ const Add_me: React.FC<UserAddProps> = ({
     errors={errors}
     type="text"
     required
-  /><Input
+  />
+  <Input
   id="price"
   label="$ Price "
   placeholder="$ Price"
@@ -126,7 +127,16 @@ const Add_me: React.FC<UserAddProps> = ({
   type="text"
   required
 />
-
+<Input
+  id="image"
+  label="Image"
+  placeholder="Image"
+  disabled={isLoading}
+  register={register}
+  errors={errors}
+  type="file"
+  required
+/>
       </>): (<></>)}
     </div>
   );
