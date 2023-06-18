@@ -36,21 +36,25 @@ const express = require("express"),
   
   
   
-  app.post('/product:add',(req,res)=>{
-    const id = req.body?.id,
-      os = req.body?.os,
-      ram = req.body?.ram,
-      ssd = req.body?.ssd,
-      screen = req.body?.screen,
-      networks = req.body?.networks,
-      category = req.body?.category,
-      published = req.body?.published,
-      authorId = req.body?.authorId,
-      price = req.body?.price; 
+  app.post('/product_add',(req,res)=>{
+    const os = req.body?.os | "",
+      ram = req.body?.ram | 0,
+      ssd = req.body?.ssd | 0,
+      screen = req.body?.screen | "00x00",
+      network = req.body?.networks | "",
+      category = req.body?.category | "",
+      published = req.body?.published | "",
+      authorId = req.body?.authorId | 0,
+      price = req.body?.price | 0;  
 
-    con.query("INSERT INTO `mc`.`product`  VALUES (?,?,?,?,?,?,?,?,?)",
-    [id,os,ram,ssd,screen,networks,category,published,authorId,price],(err,result)=>{
-        
+    con.query(`INSERT INTO product (os, ram, ssd, screen, networks, category, authorId, price) VALUES 
+    ('${os}','${ram}', '${ssd}', '${screen}', '${network}', '${category}', '${authorId}', '${price}');`,(err,result)=>{
+        if(err){
+          res.send("Error :(");
+          console.log(err);
+        } else{
+          res.send("OK");
+        }
     });
   });
   app.listen(PORT, () =>{

@@ -18,7 +18,7 @@ const Add_me: React.FC<UserAddProps> = ({
 }) => {
   const add_me_Modal = useAdd_me_Modal();
   const [isLoading, setIsLoading] = useState(false);
-  const env = process.env.API_URL;
+  const env = "http://localhost:3001/";//process.env.API_URL;
   const {
     register,
     handleSubmit,
@@ -42,7 +42,7 @@ const Add_me: React.FC<UserAddProps> = ({
     
     setIsLoading(true);
     axios
-      .post(env+"/product:add", data)
+      .post(env+"product_add", data)
       .then(() => {
         add_me_Modal.onClose();
       })
@@ -79,7 +79,54 @@ const Add_me: React.FC<UserAddProps> = ({
         errors={errors}
         type="text"
         required
-      />
+      />  <Input
+      id="ssd"
+      label="Memory"
+      placeholder="Memory"
+      disabled={isLoading}
+      register={register}
+      errors={errors}
+      type="text"
+      required
+    />
+    <Input
+      id="screen"
+      label="Screen"
+      placeholder="Screen"
+      disabled={isLoading}
+      register={register}
+      errors={errors}
+      type="text"
+      required
+    /> <Input
+    id="network"
+    label="Network"
+    placeholder="Network"
+    disabled={isLoading}
+    register={register}
+    errors={errors}
+    type="text"
+    required
+  />
+  <Input
+    id="category"
+    label="Category"
+    placeholder="Category"
+    disabled={isLoading}
+    register={register}
+    errors={errors}
+    type="text"
+    required
+  /><Input
+  id="price"
+  label="$ Price "
+  placeholder="$ Price"
+  disabled={isLoading}
+  register={register}
+  errors={errors}
+  type="text"
+  required
+/>
       </>)}
     </div>
   );
