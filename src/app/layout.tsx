@@ -3,6 +3,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import Navbar from './components/navbar/navbar'
 import getCurrentUser from './actions/getCurrentUser'
+import LoginModal from '@/app/components/modals/LoginModal'
 const inter = Inter({ subsets: ['latin'] }) 
 export const metadata = {
   title: 'Mobi e-katalog',
@@ -19,6 +20,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ClientOnly> 
+ <LoginModal></LoginModal>
           <Navbar currentUser={currentUser} />
         </ClientOnly>
         {children}</body>
