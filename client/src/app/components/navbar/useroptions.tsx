@@ -8,6 +8,7 @@ import MenuItem from         '@/src/app/components/navbar/MenuItem'
 import Avatar from           '@/src/app/components/Avatar';
 import useLoginModal from    '@/src/app/components/hoooooks/useLoginModal';
 import useRegisterModal from '@/src/app/components/hoooooks/Useregistermodal';
+import useAdd_me_Modal  from '@/src/app/components/hoooooks/useAdd_me_Modal';
 import isAdmin from '@/src/app/components/isAdmin'
 
 interface UserMenuProps {
@@ -19,6 +20,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
 }) => { 
     const registerModal = useRegisterModal()
     const loginModal = useLoginModal()
+    const add_me = useAdd_me_Modal()
     const [isOpen, setIsOpen] = useState(false)
 
     const toggleOpen = useCallback(() => {
@@ -88,7 +90,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         {currentUser ? (
                             <>
                             {currentUser.admin == 1 ? (<><MenuItem
-                                onClick={() => {}}
+                                onClick={add_me.isOpen}
                                 label="Admin" 
                             /></>):(<></>)}
                             <MenuItem

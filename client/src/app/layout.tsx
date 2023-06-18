@@ -6,6 +6,7 @@ import getCurrentUser from "./actions/getCurrentUser";
 import LoginModal from     "@/src/app/components/modals/LoginModal";
 import RegisterModal from  "@/src/app/components/modals/Registermodal";
 import ToasterProvider from "./components/toast";
+import Add_me from "./components/modals/mobile_modals/add_me";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Mobi e-katalog",
@@ -27,7 +28,9 @@ export default async function RootLayout({
           <LoginModal   />
           <RegisterModal />
           </>
-  ) : (<></>)}
+  ) : (<>
+    {currentUser.admin == 1 ? (<><Add_me></Add_me></>):(<></>)}
+  </>)}
           <Navbar currentUser={currentUser} />
         </ClientOnly>
         {children}

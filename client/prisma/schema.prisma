@@ -51,12 +51,11 @@ model Product {
   ram       String
   ssd       String // memorija telefona
   screen    String
-  price     String
-  image     Bytes
+  price     String 
   networks  String
   category  Int
   published Boolean @default(false)
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
 }
-   
+    
