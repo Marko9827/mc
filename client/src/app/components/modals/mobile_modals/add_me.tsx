@@ -10,10 +10,10 @@ import Heading from "@/src/app/components/Heading"; //'../../Heading';
 import { toast } from "react-hot-toast";
 import Input from "@/src/app/components/input/input"; //'../input/input';
 import Modal from "@/src/app/components/modals/modal";
-interface UserMenuProps {
+interface UserAddProps {
   currentUser?: User | null
 }
-const Add_me: React.FC<UserMenuProps> = ({
+const Add_me: React.FC<UserAddProps> = ({
   currentUser
 }) => {
   const add_me_Modal = useAdd_me_Modal();
@@ -32,13 +32,14 @@ const Add_me: React.FC<UserMenuProps> = ({
       networks: "",
       category: "",
       published: "",
-      authorId: currentUser?.id ,
+      authorId: currentUser?.id,
       price: "",
     },
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if(currentUser?.admin == 1){
+    
+    
     setIsLoading(true);
     axios
       .post(env+"/product:add", data)
@@ -51,13 +52,12 @@ const Add_me: React.FC<UserMenuProps> = ({
       .finally(() => {
         setIsLoading(false);
       });
-    } else{
-      toast.error("Sorry you is not a admin!");
-    }
+   
   };
 
   const bodyContent = (
     <div className="flex flex-col gap-5">
+      {currentUser?.admin == 1 ? (<></>):(<>
       <Heading title="Mobi E-Katalog" subtitle="Chose your phone  " />
 
       <Input
@@ -71,15 +71,16 @@ const Add_me: React.FC<UserMenuProps> = ({
         required
       />
       <Input
-        id="os"
-        label="Os"
-        placeholder="Os"
+        id="ram"
+        label="Ram"
+        placeholder="Ram"
         disabled={isLoading}
         register={register}
         errors={errors}
         type="text"
         required
       />
+      </>)}
     </div>
   );
 
