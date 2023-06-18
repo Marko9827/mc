@@ -11,3 +11,7 @@ body,
 .laoding{
     
 }
+
+.hidden_elm{
+    display: none !important;
+}

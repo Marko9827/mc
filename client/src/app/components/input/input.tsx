@@ -13,7 +13,8 @@ interface InputProps {
     required?: boolean
     register: UseFormRegister<FieldValues>
     errors: FieldErrors,
-    value: any
+    value?: any,
+    hidden?: boolean  
 }
 
 const Input: React.FC<InputProps> = ({
@@ -26,7 +27,8 @@ const Input: React.FC<InputProps> = ({
     register,
     required,
     errors,
-    value
+    value,
+    hidden = false
 }) => {
     return(
         <div className="w-full relative">
@@ -47,9 +49,10 @@ const Input: React.FC<InputProps> = ({
                 { ...register(id, { required })}
                 placeholder={placeholder}
                 type={type}
-                value={value}
+                value={value} 
                 className={`
                     peer
+                    ${hidden ? 'hidden_elm' : ''}
                     w-full
                     p-6
                     pt-8

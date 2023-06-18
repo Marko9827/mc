@@ -56,7 +56,7 @@ const Add_me: React.FC<UserAddProps> = ({
 
   const bodyContent = (
     <div className="flex flex-col gap-5">
-      {currentUser?.admin == 1 ? (<></>):(<>
+      {currentUser?.admin == 1 ?  (<>
       <Heading title="Mobi E-Katalog" subtitle="Chose your phone  " />
 
       <Input
@@ -76,7 +76,7 @@ const Add_me: React.FC<UserAddProps> = ({
         disabled={isLoading}
         register={register}
         errors={errors}
-        type="text"
+        type="number"
         required
       />  <Input
       id="ssd"
@@ -85,7 +85,7 @@ const Add_me: React.FC<UserAddProps> = ({
       disabled={isLoading}
       register={register}
       errors={errors}
-      type="text"
+      type="number"
       required
     />
     <Input
@@ -126,7 +126,8 @@ const Add_me: React.FC<UserAddProps> = ({
   type="text"
   required
 />
-      </>)}
+
+      </>): (<></>)}
     </div>
   );
 

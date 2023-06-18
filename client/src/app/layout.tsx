@@ -29,7 +29,7 @@ export default async function RootLayout({
           <RegisterModal />
           </>
   ) : (<>
-    {currentUser.admin == 1 ? (<><Add_me></Add_me></>):(<></>)}
+    {currentUser.admin == 1 ? (<><Add_me currentUser={currentUser}></Add_me></>):(<></>)}
   </>)}
           <Navbar currentUser={currentUser} />
         </ClientOnly>

@@ -30,7 +30,9 @@ const UserMenu: React.FC<UserMenuProps> = ({
     return (
         <div className="relative">
             <div className="flex flex-row items-center gap-2">
-                <div
+            {currentUser ? (
+                            <>
+                            {currentUser.admin == 1 ? (<>  <div
                     onClick={() => { }}
                     className="
                         hidden
@@ -46,7 +48,27 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     "
                 >
                   Add new phone
+                </div> </>) : (<></>)}
+           </> ):(<>
+            <div
+                    onClick={() => { }}
+                    className="
+                        hidden
+                        md:block
+                        text-sm
+                        font-semibold
+                        py-4
+                        px-4
+                        rounded-full
+                        hover:bg-neutral-200
+                        transition
+                        cursor-pointer                   
+                    "
+                >
+                Phone catalog
                 </div>
+
+           </>) }
                 <div
                     onClick={toggleOpen}
                     className="
