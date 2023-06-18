@@ -20,7 +20,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ClientOnly> 
- <LoginModal></LoginModal>
+ <LoginModal ></LoginModal>
           <Navbar currentUser={currentUser} />
         </ClientOnly>
         {children}</body>

@@ -45,6 +45,10 @@ const LoginModal = () => {
         })
     }
 
+    const registerFromLogin = function(){
+  
+    }
+
     const bodyContent = (
         <div className="flex flex-col gap-5">
           
@@ -52,6 +56,7 @@ const LoginModal = () => {
             <Input
                 id="email"
                 label="Email"
+                placeholder="Email"
                 disabled={isLoading}
                 register={register}
                 errors={errors}
@@ -61,6 +66,7 @@ const LoginModal = () => {
             <Input
                 id="password"
                 type="password"
+                placeholder="Password"
                 label="Password"
                 disabled={isLoading}
                 register={register}
@@ -84,14 +90,15 @@ const LoginModal = () => {
                 "
             >
                 <div className="justify-center flex flex-row items-center gap-3">
-                    <div>
-                       Do you existing user?
-                    </div>
-                    <div 
-                        onClick={registerModal.onClose}
+                <div 
+                        onClick={registerModal.onOpen }
                         className="text-neutral-700 cursor pointer hover:underline">
-                        Login 
+                         You is new user?
                     </div>
+                    <div>
+                    Register
+                    </div>
+                     
                 </div>
             </div>
         </div>
@@ -101,8 +108,8 @@ const LoginModal = () => {
         <Modal
             disabled={isLoading}
             isOpen={loginModal.isOpen}
-            title="Prijavi se"
-            actionLabel="Nastavi proces"
+            title="Login"
+            actionLabel="Login"
             onClose={loginModal.onClose}
             onSubmit={handleSubmit(onSubmit)}
             body={bodyContent}
