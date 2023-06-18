@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import Navbar from './components/navbar/navbar'
 import getCurrentUser from './actions/getCurrentUser'
 import LoginModal from '@/app/components/modals/LoginModal'
+import RegisterModal from '@/app/components/modals/Registermodal'
 const inter = Inter({ subsets: ['latin'] }) 
 export const metadata = {
   title: 'Mobi e-katalog',
@@ -21,6 +22,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <ClientOnly> 
  <LoginModal ></LoginModal>
+ <RegisterModal></RegisterModal>
           <Navbar currentUser={currentUser} />
         </ClientOnly>
         {children}</body>

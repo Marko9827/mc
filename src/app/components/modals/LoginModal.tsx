@@ -9,6 +9,7 @@ import useRegisterModal from "../hoooooks/Useregistermodal"
 import useLoginModal from "../hoooooks/useLoginModal"
 import { useState } from "react"
 import Input from "../input/input"
+import Heading from "../Heading"
 
 const LoginModal = () => {
     const router = useRouter();
@@ -51,7 +52,10 @@ const LoginModal = () => {
 
     const bodyContent = (
         <div className="flex flex-col gap-5">
-          
+             <Heading
+                title="Mobi E-Katalog"
+                subtitle="Chose your phone  "
+            />
 
             <Input
                 id="email"
