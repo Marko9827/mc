@@ -6,12 +6,15 @@ import Logo from "./logo";
 import { User } from '@prisma/client'
 import Container from "../Container";
 import UserMenu from "./useroptions";
+ 
 interface NavbarProps {
-    currentUser?: User | null
+    currentUser?: User | null,
+    children?: React.ReactNode
 }
 
 const Navbar : React.FC<NavbarProps> = ({
-    currentUser
+    currentUser,
+    children
 }) => {
  
     return (
@@ -31,6 +34,10 @@ const Navbar : React.FC<NavbarProps> = ({
                         "
                     >
                         <Logo /> 
+                        <>
+    
+    </>
+                        {children}
                         <UserMenu currentUser={currentUser}></UserMenu>
                         </div>
                 </Container>

@@ -5,8 +5,8 @@ import CardUI2 from "@/src/app/components/product/card";
 import { User } from '@prisma/client';
 import { useEffect, useState } from 'react';
 import CONF from '@/src/app/layout'
-import { Card, Grid, Row, Text } from "@nextui-org/react";
-
+import { Card, Grid, Row, Text, Input} from "@nextui-org/react";
+ 
 interface GridListProps {
   currentUser?: User | null 
 }
@@ -30,13 +30,16 @@ const GridList : React.FC<GridListProps> = ({
       
       
     return (
+<>
+<Input clearable bordered labelPlaceholder="Search Phones" initialValue="" />
+
       <Grid.Container gap={2} justify="flex-start">
       {data.map((item, index) => (
         <Grid xs={6} sm={3} key={index}>
           <CardUI2   image={item['image']} os={item['os']} screen={item['screen']} price={item['price']} />
         </Grid>
       ))}
-    </Grid.Container>
+    </Grid.Container></>
     /*
     <Grid.Container gap={2} justify="center">
  
