@@ -33,6 +33,7 @@ const Add_me: React.FC<UserAddProps> = ({
       category: "",
       authorId: currentUser?.id,
       price: "",
+      image: null
     },
   });
 
@@ -49,6 +50,7 @@ const Add_me: React.FC<UserAddProps> = ({
         toast.error("Error, fill all inputs or try again latter.");
       })
       .finally(() => {
+        toast.success("Complete");
         setIsLoading(false);
       });
    
@@ -129,7 +131,7 @@ const Add_me: React.FC<UserAddProps> = ({
 />
 <Input
   id="image"
-  label="Image"
+  label="Image" 
   placeholder="Image"
   disabled={isLoading}
   register={register}

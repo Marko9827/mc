@@ -6,15 +6,15 @@ import { BiEuro } from "react-icons/bi"
 interface InputProps {
     id: string
     label: string
-    type?: string
-    placeholder?:string,
+    type?: string 
+    placeholder?:string
     disabled?: boolean
     formatPrice?: boolean
     required?: boolean
     register: UseFormRegister<FieldValues>
-    errors: FieldErrors,
-    value?: any,
-    hidden?: boolean  
+    errors: FieldErrors
+    value?: any
+    hidden?: any
 }
 
 const Input: React.FC<InputProps> = ({
@@ -28,7 +28,7 @@ const Input: React.FC<InputProps> = ({
     required,
     errors,
     value,
-    hidden = false
+    hidden = false 
 }) => {
     return(
         <div className="w-full relative">
@@ -49,7 +49,7 @@ const Input: React.FC<InputProps> = ({
                 { ...register(id, { required })}
                 placeholder={placeholder}
                 type={type}
-                value={value} 
+                value={value}  
                 className={`
                     peer
                     ${hidden ? 'hidden_elm' : ''}

@@ -7,7 +7,7 @@ interface useAdd_me_ModalStore {
 }
 
 const useAdd_me_Modal = create<useAdd_me_ModalStore>((set) => ({
-    isOpen: true,
+    isOpen: false,
     onOpen: () => set({ isOpen: true }),
     onClose: () => set({ isOpen: false }) 
 }))

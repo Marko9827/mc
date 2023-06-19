@@ -112,7 +112,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         {currentUser ? (
                             <>
                             {currentUser.admin == 1 ? (<><MenuItem
-                                onClick={() => {}}
+                                onClick={add_me.onOpen}
                                 label="Admin" 
                             /><hr /></>):(<></>)}
                             <MenuItem
