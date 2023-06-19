@@ -3,6 +3,7 @@ import { Card, Col, Row, Button, Text } from "@nextui-org/react";
 import * as React from 'react'; 
 import { User } from '@prisma/client'
 interface card_details {
+    onClick?: () => void,
     os?: String | null,
     screen?: String | null,
     ram?: String | null,
@@ -19,11 +20,12 @@ const cardUI2 : React.FC<card_details> = ({
     image,
     price,
     category,
-    currentUser
+    currentUser,
+    onClick
 }) => {
 
   return(
-    <Card isPressable>
+    <Card isPressable      onClick={onClick}>
             <Card.Body css={{ p: 0 }}>
               <Card.Image
         src={'http://localhost:3001/'+ image}
