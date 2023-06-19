@@ -12,6 +12,8 @@ import ToasterProvider from "./components/toast";
 import Add_me from "./components/modals/mobile_modals/add_me";
 import GridList from './components/product/gridlist';
  const inter = Inter({ subsets: ["latin"] });
+
+ 
 export const metadata = {
   title: "Mobi e-katalog",
   description: "Mobi e-katalog telefona",

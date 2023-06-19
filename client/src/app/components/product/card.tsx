@@ -38,7 +38,7 @@ const cardUI2 : React.FC<card_details> = ({
             <Card.Footer css={{ justifyItems: "flex-start" }}>
               <Row wrap="wrap" justify="space-between" align="center">
                 <Text b>{os}</Text>
-                <Text css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>
+                <Text css={{ marginLeft:"10px", color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>
                   $ {price}
                 </Text>
               </Row>
