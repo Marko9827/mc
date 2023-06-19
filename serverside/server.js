@@ -85,6 +85,7 @@ app.post("/product_add", upload.single("image"), (req, res) => {
     }
   );
 });
+app.use(express.static('public/images'))
 app.listen(PORT, () => {
   console.log(`Server start at http://localhost:${PORT}/`);
-});
+}); 

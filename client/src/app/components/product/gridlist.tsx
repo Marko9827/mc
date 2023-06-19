@@ -1,18 +1,18 @@
 'use client'
 import * as React from 'react';
-import axios from 'axios'
-import { Grid } from "@nextui-org/react";
+import axios from 'axios' 
 import CardUI2 from "@/src/app/components/product/card";
 import { User } from '@prisma/client';
 import { useEffect, useState } from 'react';
 import CONF from '@/src/app/layout'
+import { Card, Grid, Row, Text } from "@nextui-org/react";
 
 interface GridListProps {
-  currentUser?: User | null
+  currentUser?: User | null 
 }
 
 const GridList : React.FC<GridListProps> = ({
-  currentUser
+  currentUser 
 }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -29,7 +29,16 @@ const GridList : React.FC<GridListProps> = ({
        
       
       
-    return (<Grid.Container gap={2} justify="center">
+    return (
+      <Grid.Container gap={2} justify="flex-start">
+      {data.map((item, index) => (
+        <Grid xs={6} sm={3} key={index}>
+          <CardUI2 image={item['image']} os={item['os']} screen={item['screen']} price={item['price']} />
+        </Grid>
+      ))}
+    </Grid.Container>
+    /*
+    <Grid.Container gap={2} justify="center">
  
 
       {data.map(item => (
@@ -39,7 +48,8 @@ const GridList : React.FC<GridListProps> = ({
      </Grid>
       ))}
        
-</Grid.Container>)
+</Grid.Container>
+*/)
 }
 
 

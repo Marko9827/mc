@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NextUIProvider } from '@nextui-org/react'; 
+import { Container, NextUIProvider } from '@nextui-org/react'; 
 
 import ClientOnly from "./components/clientOnly";
 import "./globals.css"; 
@@ -30,7 +30,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
   
-
+ 
         <ClientOnly>
           <ToasterProvider />
           {!currentUser ? (<>
@@ -41,12 +41,10 @@ export default async function RootLayout({
     {currentUser.admin == 1 ? (<><Add_me currentUser={currentUser}></Add_me></>):(<></>)}
   </>)}
           <Navbar currentUser={currentUser} />
-      
-         
-          <GridList currentUser={currentUser}  /> 
-
-          </ClientOnly> 
- 
+        <div className="container_fixed">
+          <GridList     />  
+        </div>
+          </ClientOnly>  
         {children}
       </body>
     </html>
