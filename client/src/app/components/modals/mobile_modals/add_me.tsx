@@ -137,7 +137,7 @@ const Add_me: React.FC<UserAddProps> = ({
   register={register}
   errors={errors}
   type="file"
-  required
+   
 />
       </>): (<></>)}
     </div>

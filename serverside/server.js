@@ -46,10 +46,19 @@ const upload = multer({
   storage: storage,
 });
 
-
-app.get("/products",(req,res)=>{
-  con.query("",function(err,result, fields){
-
+app.get("/products/:id",(req,res) =>{
+  const id = req.params.id;
+  con.query("SELECT * FROM product where id=?",id,function( err,result){
+      if(err){
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+  });
+});
+app.get("/products/",(req,res)=>{
+  con.query("SELECT * FROM product ORDER BY price DESC",function(err,result, fields){
+      res.send(result);
   });
 })
 app.post("/product_add", upload.single("image"), (req, res) => {
@@ -61,7 +70,7 @@ app.post("/product_add", upload.single("image"), (req, res) => {
     category = req.body?.category,
     authorId = req.body?.authorId | 0,
     price = req.body?.price;
-  const image = req.file?.filename;
+  const image = req.file?.filename | "";
 
   con.query(
     `INSERT INTO product (os, ram, ssd, screen, networks, category, authorId, price, image) VALUES 
