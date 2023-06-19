@@ -15,6 +15,7 @@ const GridList : React.FC<GridListProps> = ({
   currentUser 
 }) => {
   const [data, setData] = useState([]);
+  const [searchval, setSearchval] = useState("");
   useEffect(() => {
     axios.get('http://localhost:3001/products/')
       .then(response => {
@@ -31,10 +32,18 @@ const GridList : React.FC<GridListProps> = ({
       
     return (
 <>
-<Input clearable bordered labelPlaceholder="Search Phones" initialValue="" />
+<Input onChange={(ev) => {
+  setSearchval(ev.target.value)
+}} clearable bordered labelPlaceholder="Search Phones" initialValue="" />
 
       <Grid.Container gap={2} justify="flex-start">
-      {data.map((item, index) => (
+      {data.filter((val)=>{
+        if(searchval == ""){
+          return val;
+        } else if (val['os']?.toLowerCase().includes(searchval.toLowerCase())){
+          return val;
+        } else{}
+      }).map((item, index) => (
         <Grid xs={6} sm={3} key={index}>
           <CardUI2   image={item['image']} os={item['os']} screen={item['screen']} price={item['price']} />
         </Grid>
