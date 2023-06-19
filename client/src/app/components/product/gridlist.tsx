@@ -33,7 +33,7 @@ const GridList : React.FC<GridListProps> = ({
       <Grid.Container gap={2} justify="flex-start">
       {data.map((item, index) => (
         <Grid xs={6} sm={3} key={index}>
-          <CardUI2 image={item['image']} os={item['os']} screen={item['screen']} price={item['price']} />
+          <CardUI2   image={item['image']} os={item['os']} screen={item['screen']} price={item['price']} />
         </Grid>
       ))}
     </Grid.Container>
