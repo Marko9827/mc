@@ -5,7 +5,7 @@ import CardUI2 from "@/src/app/components/product/card";
 import { User } from '@prisma/client';
 import { useEffect, useState } from 'react';
 import CONF from '@/src/app/layout'
-import { Card, Grid, Row, Text, Input} from "@nextui-org/react";
+import { Card, Tooltip, Grid, Row, Text, Input} from "@nextui-org/react";
  
 interface GridListProps {
   currentUser?: User | null 
@@ -43,10 +43,16 @@ const GridList : React.FC<GridListProps> = ({
         } else if (val['os']?.toLowerCase().includes(searchval.toLowerCase())){
           return val;
         } else{}
-      }).map((item, index) => (
+      }).map((item, index) => 
+     
+      (
+         
         <Grid xs={6} sm={3} key={index}>
+       <Tooltip           placement="bottom"
+ color="invert" content={"Show more information for " + item['os'] }> 
           <CardUI2   image={item['image']} os={item['os']} screen={item['screen']} price={item['price']} />
-        </Grid>
+        
+      </Tooltip> </Grid>
       ))}
     </Grid.Container></>
     /*
