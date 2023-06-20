@@ -15,6 +15,7 @@ const GridList : React.FC<GridListProps> = ({
   currentUser 
 }) => {
   const [data, setData] = useState([]);
+  const [datajs, setDatajs] = useState({});
   const [searchval, setSearchval] = useState("");
   const { setVisible, bindings } = useModal()
 
@@ -29,6 +30,11 @@ const GridList : React.FC<GridListProps> = ({
       });
   }, []);
 
+
+   const functModal = (data: {}) => {
+    setDatajs(data);
+    setVisible(true)
+   }
        
       
       
@@ -55,7 +61,7 @@ const GridList : React.FC<GridListProps> = ({
         <Grid xs={6} sm={3} key={index}>
        <Tooltip           placement="bottom"
  color="invert" content={"Show more information for " + item['os'] }> 
-          <CardUI2  onClick={() => setVisible(true)}   image={item['image']} os={item['os']} screen={item['screen']} price={item['price']} />
+          <CardUI2  onClick={() => functModal(item)}   image={item['image']} os={item['os']} screen={item['screen']} price={item['price']} />
         
       </Tooltip> </Grid>
       ))}
@@ -66,7 +72,6 @@ const GridList : React.FC<GridListProps> = ({
     <Modal
         scroll 
         animated={true}
-        fullScreen={true}
         blur={true}
         width="600px"
         aria-labelledby="modal-title"
@@ -75,7 +80,7 @@ const GridList : React.FC<GridListProps> = ({
       >
         <Modal.Header>
           <Text id="modal-title" size={18}>
-           More information for  
+           More information for {datajs?.os}
           </Text>
         </Modal.Header>
         <Modal.Body>
@@ -83,7 +88,7 @@ const GridList : React.FC<GridListProps> = ({
           <Grid.Container gap={2} justify="center">
       <Grid xs={2}>
           <Card.Image
-        src="http://localhost:3001/phone1.jpg"
+        src={"http://localhost:3001/" + datajs?.image}
         objectFit="scale-down"
                 width="100%"
                 height={250} 
