@@ -31,6 +31,7 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
   const [datajs, setDatajs] = useState({});
   const [filterdjenerator, setfilterDJenerator ] = useState([]);
   const [searchval, setSearchval] = useState("");
+  const [filter_ssd, setFilter_ssd] = useState("");
   const [filter_ram, setFilter_ram] = useState("");
   const [filter_os, setFilter_os] = useState("");
   const { setVisible, bindings } = useModal();
@@ -67,18 +68,26 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
     () => Array.from(selectedOS).join(", ").replaceAll("_", " "),
     [selectedOS]
   );
-  
+  // RAM
   const [selectedRAM, setSelectedRAM] = React.useState(new Set([""]));
 
   const selectedValue_RAM = React.useMemo(
-    () => {
-      
-      
+    () => { 
       categorytmp(Array.from(selectedRAM).join(", ").replaceAll("_", " "));
       return  Array.from(selectedRAM).join(", ").replaceAll("_", " ");
     },
     [selectedRAM]
   ); 
+  // SSD
+  const [selectedSSD, setSelectedSSD] = React.useState(new Set([""]));
+
+  const selectedValue_SSD = React.useMemo(
+    () => { 
+      categorytmp(Array.from(selectedSSD).join(", ").replaceAll("_", " "));
+      return  Array.from(selectedSSD).join(", ").replaceAll("_", " ");
+    },
+    [selectedSSD]
+  );
   const functModal = (data: {}) => {
     setDatajs(data);
     setVisible(true);

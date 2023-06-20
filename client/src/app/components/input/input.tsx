@@ -12,7 +12,7 @@ interface InputProps {
     formatPrice?: boolean
     required?: boolean
     register: UseFormRegister<FieldValues>
-    errors: FieldErrors
+    errors: FieldErrors 
     value?: any
     hidden?: any
 }
@@ -23,7 +23,7 @@ const Input: React.FC<InputProps> = ({
     type = "tekst",
     disabled,
     placeholder,
-    formatPrice,
+    formatPrice, 
     register,
     required,
     errors,

@@ -29,24 +29,23 @@ con.connect(function (err) {
     console.log("SQL OK.");
   }
 });
-
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    db(null, "public/upload");
+    cb(null, 'public/images/');
   },
   filename: (req, file, cb) => {
-    db(
-      null,
-      file.filename + "_" + Date.now() + path.extname(file.originalname)
-    );
-  },
+    cb(null, Date.now() + '-' + file.originalname);
+  }
 });
+ 
+
 
 const upload = multer({
-  storage: storage,
+  storage: storage
 });
 app.get("/products/:ram",(req,res) =>{
   const id = req.params.ram;
+  
   con.query("SELECT * FROM product where ram=?",id,function( err,result){
       if(err){
         console.log(err);
@@ -70,7 +69,7 @@ app.get("/products/",(req,res)=>{
       res.send(result);
   });
 })
-app.post("/product_add", upload.single("image"), (req, res) => {
+app.post("/product_add", upload.single("imagefile"), (req, res) => {
   const os = req.body?.os,
     ram = req.body?.ram,
     ssd = req.body?.ssd,
@@ -79,12 +78,15 @@ app.post("/product_add", upload.single("image"), (req, res) => {
     category = req.body?.category,
     tsStandard = req.body?.tsStandard,
     authorId = req.body?.authorId | 0,
-    price = req.body?.price;
-  const image = req.file?.filename | "";
-
+    price = req.body?.price,
+    description = req.body?.description,
+    image = req.file?.imagefile;
+    if(!req.file){
+ return  res.send("Error :( - Upload image.");
+    }else{
   con.query(
-    `INSERT INTO product (os, ram, ssd, screen, networks, category, authorId, price, image, tsStandard) VALUES 
-    ('${os}','${ram}', '${ssd}', '${screen}', '${networks}', '${category}', '${authorId}', '${price}', '${image}', '${tsStandard}');`,
+    `INSERT INTO product (os, ram, ssd, screen, networks, category, authorId, price, image, tsStandard, description) VALUES 
+    ('${os}','${ram}', '${ssd}', '${screen}', '${networks}', '${category}', '${authorId}', '${price}', '${image}', '${tsStandard}','${description}');`,
     (err, result) => {
       if (err) {
         res.send("Error :(");
@@ -94,6 +96,7 @@ app.post("/product_add", upload.single("image"), (req, res) => {
       }
     }
   );
+}
 });
 app.use(express.static('public/images'))
 app.listen(PORT, () => {

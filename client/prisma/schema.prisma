@@ -55,6 +55,7 @@ model Product {
   networks  String
   category  String
   tsStandard String?
+  description String?
   image     String? 
   published Boolean @default(false)
   author    User    @relation(fields: [authorId], references: [id])

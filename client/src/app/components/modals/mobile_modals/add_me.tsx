@@ -10,6 +10,7 @@ import Heading from "@/src/app/components/Heading"; //'../../Heading';
 import { toast } from "react-hot-toast";
 import Input from "@/src/app/components/input/input"; //'../input/input';
 import Modal from "@/src/app/components/modals/modal";
+import ReactDOM  from 'react-dom';
 import { 
   Table,
   useModal, 
@@ -29,12 +30,18 @@ const Add_me: React.FC<UserAddProps> = ({
 }) => {
   const add_me_Modal = useAdd_me_Modal();
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  
+  const  filehandle = (evt) => {
+    setSelectedFile(evt)
+  }
   const env = "http://localhost:3001/";//process.env.API_URL;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
+
     defaultValues: {
       os: "",
       ram: "",
@@ -45,16 +52,26 @@ const Add_me: React.FC<UserAddProps> = ({
       authorId: currentUser?.id,
       tsStandard: "",
       price: "",
-      image: ""
+      imagefile: selectedFile
     },
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    
-    
+    const  var_data = new FormData();
+    var_data.append('os',data.os); 
+          var_data.append('ram', data.ram); 
+          var_data.append('ssd', data.ssd); 
+       var_data.append('screen', data.screen); 
+     var_data.append('networks', data.networks); 
+     var_data.append('category', data.category); 
+     var_data.append('authorId', data.authorId); 
+   var_data.append('tsStandard', data.tsStandard); 
+        var_data.append('price', data.price); 
+        var_data.append('imagefile', selectedFile);
+
     setIsLoading(true);
-    axios
-      .post(env+"product_add", data)
+   const res = axios
+      .post(env+"product_add", var_data)
       .then(() => {
         add_me_Modal.onClose();
       })
@@ -93,7 +110,16 @@ const Add_me: React.FC<UserAddProps> = ({
         type="number"
         required
       /> 
-      
+       <Input
+        id="description"
+        label="Description"
+        placeholder="Description"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        type="textarea"
+        required
+      /> 
      <Input
         id="tsStandard"
         label="Telecomunication standard"
@@ -154,13 +180,17 @@ const Add_me: React.FC<UserAddProps> = ({
   required
 />
 <Input
-  id="image"
+  id="imagefile"
   label="Image" 
   placeholder="Image"
   disabled={isLoading}
   register={register}
-  errors={errors}
+  errors={errors}  
   type="file"
+  onChange={(event)=>{
+    setSelectedFile(event.target.value)
+  }}
+  required
    
 />
       </>): (<></>)}
@@ -175,6 +205,7 @@ const Add_me: React.FC<UserAddProps> = ({
       actionLabel="Add new phone"
       onClose={add_me_Modal.onClose}
       onSubmit={handleSubmit(onSubmit)}
+
       body={bodyContent}
     ></Modal>
   );
