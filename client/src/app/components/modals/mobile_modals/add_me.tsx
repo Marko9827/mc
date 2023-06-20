@@ -10,6 +10,7 @@ import Heading from "@/src/app/components/Heading"; //'../../Heading';
 import { toast } from "react-hot-toast";
 import Input from "@/src/app/components/input/input"; //'../input/input';
 import Modal from "@/src/app/components/modals/modal";
+import Dropdown from '@nextui-org/react'
 interface UserAddProps {
   currentUser?: User | null
 }
@@ -33,6 +34,7 @@ const Add_me: React.FC<UserAddProps> = ({
       category: "",
       authorId: currentUser?.id,
       price: "",
+      ts:"",
       image: null
     },
   });
@@ -80,7 +82,18 @@ const Add_me: React.FC<UserAddProps> = ({
         errors={errors}
         type="number"
         required
-      />  <Input
+      /> 
+       <Input
+        id="ram"
+        label="Ram"
+        placeholder="Ram"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        type="number"
+        required
+      /> 
+       <Input
       id="ssd"
       label="Memory"
       placeholder="Memory"

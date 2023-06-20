@@ -15,6 +15,7 @@ import {
   Tooltip,
   Grid,
   Row,
+  Dropdown,
   Text,
   Input,
 } from "@nextui-org/react";
@@ -28,7 +29,7 @@ interface GridListProps {
 const GridList: React.FC<GridListProps> = ({ currentUser }) => {
   const [data, setData] = useState([]);
   const [datajs, setDatajs] = useState({});
-  const [filterdjenerator, setfilterDJenerator ] = useState({});
+  const [filterdjenerator, setfilterDJenerator ] = useState([]);
   const [searchval, setSearchval] = useState("");
   const { setVisible, bindings } = useModal();
 
@@ -38,12 +39,13 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
       .then((response) => {
         const jsonData = response.data;
         setData(jsonData);
+        setfilterDJenerator(jsonData);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, []);
-
+  
   const functModal = (data: {}) => {
     setDatajs(data);
     setVisible(true);
@@ -53,7 +55,7 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
     <>
       <Grid.Container gap={2} justify="center">
         <Grid xs={12}>
-          <Input
+          <>          <Input
             onChange={(ev) => {
               setSearchval(ev.target.value);
             }}
@@ -62,6 +64,34 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
             labelPlaceholder="Search Phones"
             initialValue=""
           />
+         
+    <Dropdown className="margin-right-5">
+      <Dropdown.Button flat>  OS</Dropdown.Button>
+      <Dropdown.Menu aria-label="Dynamic Actions" items={filterdjenerator}>
+        {(item) => (
+          <Dropdown.Item
+            key={item?.os}
+            color="default"
+          >
+            {item?.os}
+          </Dropdown.Item>
+        )}
+      </Dropdown.Menu>
+    </Dropdown>
+    <Dropdown className="margin-right-5">
+      <Dropdown.Button flat><BsMemory className="margin-right-5"/> RAM</Dropdown.Button>
+      <Dropdown.Menu aria-label="Dynamic Actions" items={filterdjenerator}>
+        {(item) => (
+          <Dropdown.Item
+            key={item?.ram}
+            color="default"
+          >
+            {item?.ram}
+          </Dropdown.Item>
+        )}
+      </Dropdown.Menu>
+    </Dropdown>
+    </>
         </Grid>
         <Grid xs={12}>
           <Grid.Container gap={2} justify="flex-start">

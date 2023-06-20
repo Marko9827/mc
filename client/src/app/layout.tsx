@@ -11,6 +11,7 @@ import RegisterModal from  "@/src/app/components/modals/Registermodal";
 import ToasterProvider from "./components/toast";
 import Add_me from "./components/modals/mobile_modals/add_me";
 import GridList from './components/product/gridlist';
+import Modal from '@nextui-org/react';
  const inter = Inter({ subsets: ["latin"] });
 
  
