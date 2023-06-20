@@ -25,3 +25,16 @@ body,
     left: 0px;
     height: -webkit-fill-available;
 }
+
+.inlineflex{
+    display: inline-flex;
+    align-items: center;
+}table tbody tr td:last-child {
+    display: inline-flex;
+    align-items: center;
+}
+
+table tbody tr td:last-child svg {
+    margin-right:5px;
+    
+}
