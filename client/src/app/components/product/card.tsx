@@ -12,7 +12,7 @@ interface card_details {
     price?: String | null,
     currentUser?: User | null
 }
-
+ 
 const cardUI2 : React.FC<card_details> = ({
     os,
     screen,
@@ -32,7 +32,7 @@ const cardUI2 : React.FC<card_details> = ({
         objectFit="cover"
                 width="100%"
                 height={140}
-                alt={''+os}
+                alt={''+os} 
               />
             </Card.Body>
             <Card.Footer css={{ justifyItems: "flex-start" }}>

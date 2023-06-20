@@ -10,7 +10,17 @@ import Heading from "@/src/app/components/Heading"; //'../../Heading';
 import { toast } from "react-hot-toast";
 import Input from "@/src/app/components/input/input"; //'../input/input';
 import Modal from "@/src/app/components/modals/modal";
-import Dropdown from '@nextui-org/react'
+import { 
+  Table,
+  useModal, 
+  Image,
+  Card,
+  Tooltip,
+  Grid,
+  Row,
+  Dropdown,
+  Text, 
+}  from '@nextui-org/react'
 interface UserAddProps {
   currentUser?: User | null
 }
@@ -33,9 +43,9 @@ const Add_me: React.FC<UserAddProps> = ({
       networks: "",
       category: "",
       authorId: currentUser?.id,
+      tsStandard: "",
       price: "",
-      ts:"",
-      image: null
+      image: ""
     },
   });
 
@@ -59,7 +69,7 @@ const Add_me: React.FC<UserAddProps> = ({
   };
 
   const bodyContent = (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 ">
       {currentUser?.admin == 1 ?  (<>
       <Heading title="Mobi E-Katalog" subtitle="Chose your phone  " />
 
@@ -83,14 +93,15 @@ const Add_me: React.FC<UserAddProps> = ({
         type="number"
         required
       /> 
-       <Input
-        id="ram"
-        label="Ram"
-        placeholder="Ram"
+      
+     <Input
+        id="tsStandard"
+        label="Telecomunication standard"
+        placeholder="Telecomunication standard"
         disabled={isLoading}
         register={register}
         errors={errors}
-        type="number"
+        type="select"
         required
       /> 
        <Input
@@ -113,7 +124,7 @@ const Add_me: React.FC<UserAddProps> = ({
       type="text"
       required
     /> <Input
-    id="network"
+    id="networks"
     label="Network"
     placeholder="Network"
     disabled={isLoading}
@@ -157,7 +168,7 @@ const Add_me: React.FC<UserAddProps> = ({
   );
 
   return (
-    <Modal
+    <Modal  
       disabled={isLoading}
       isOpen={add_me_Modal.isOpen}
       title="Add new phone"

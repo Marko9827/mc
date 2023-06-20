@@ -54,8 +54,8 @@ const Input: React.FC<InputProps> = ({
                     peer
                     ${hidden ? 'hidden_elm' : ''}
                     w-full
-                    p-6
-                    pt-8
+                    p-4
+                    pt-3
                     font-light
                     bg-white
                     border-2

@@ -45,8 +45,17 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
 });
-
-app.get("/products/:id",(req,res) =>{
+app.get("/products/:ram",(req,res) =>{
+  const id = req.params.ram;
+  con.query("SELECT * FROM product where ram=?",id,function( err,result){
+      if(err){
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+  });
+});
+app.get("/productsf/:id",(req,res) =>{
   const id = req.params.id;
   con.query("SELECT * FROM product where id=?",id,function( err,result){
       if(err){
@@ -68,13 +77,14 @@ app.post("/product_add", upload.single("image"), (req, res) => {
     screen = req.body?.screen,
     networks = req.body?.networks,
     category = req.body?.category,
+    tsStandard = req.body?.tsStandard,
     authorId = req.body?.authorId | 0,
     price = req.body?.price;
   const image = req.file?.filename | "";
 
   con.query(
-    `INSERT INTO product (os, ram, ssd, screen, networks, category, authorId, price, image) VALUES 
-    ('${os}','${ram}', '${ssd}', '${screen}', '${networks}', '${category}', '${authorId}', '${price}', ${image});`,
+    `INSERT INTO product (os, ram, ssd, screen, networks, category, authorId, price, image, tsStandard) VALUES 
+    ('${os}','${ram}', '${ssd}', '${screen}', '${networks}', '${category}', '${authorId}', '${price}', '${image}', '${tsStandard}');`,
     (err, result) => {
       if (err) {
         res.send("Error :(");

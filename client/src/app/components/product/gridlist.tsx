@@ -31,11 +31,15 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
   const [datajs, setDatajs] = useState({});
   const [filterdjenerator, setfilterDJenerator ] = useState([]);
   const [searchval, setSearchval] = useState("");
+  const [filter_ram, setFilter_ram] = useState("");
+  const [filter_os, setFilter_os] = useState("");
   const { setVisible, bindings } = useModal();
 
   useEffect(() => {
+    var url = "http://localhost:3001/products/";
+    
     axios
-      .get("http://localhost:3001/products/")
+      .get(url)
       .then((response) => {
         const jsonData = response.data;
         setData(jsonData);
@@ -46,6 +50,35 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
       });
   }, []);
   
+ const categorytmp = (ram = "") => { 
+  axios.get("http://localhost:3001/products/"+String(ram))
+  .then((response) => {
+    const jsonData = response.data;
+    setData(jsonData); 
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
+  });  
+}
+
+  const [selectedOS, setSelectedOS] = React.useState(new Set([""]));
+
+  const selectedValue_OS = React.useMemo(
+    () => Array.from(selectedOS).join(", ").replaceAll("_", " "),
+    [selectedOS]
+  );
+  
+  const [selectedRAM, setSelectedRAM] = React.useState(new Set([""]));
+
+  const selectedValue_RAM = React.useMemo(
+    () => {
+      
+      
+      categorytmp(Array.from(selectedRAM).join(", ").replaceAll("_", " "));
+      return  Array.from(selectedRAM).join(", ").replaceAll("_", " ");
+    },
+    [selectedRAM]
+  ); 
   const functModal = (data: {}) => {
     setDatajs(data);
     setVisible(true);
@@ -65,9 +98,17 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
             initialValue=""
           />
          
-    <Dropdown className="margin-right-5">
-      <Dropdown.Button flat>  OS</Dropdown.Button>
-      <Dropdown.Menu aria-label="Dynamic Actions" items={filterdjenerator}>
+    <Dropdown className="margin-left-5 margin-right-5">
+      <Dropdown.Button  flat   css={{ tt: "capitalize" }} >OS | {selectedValue_OS}</Dropdown.Button>
+      <Dropdown.Menu 
+      aria-label="Dynamic Actions" items={filterdjenerator}
+            allow
+      color="secondary" 
+      selectionMode="single"
+      selectedKeys={selectedOS}
+      onSelectionChange={setSelectedOS}
+      
+      >
         {(item) => (
           <Dropdown.Item
             key={item?.os}
@@ -79,8 +120,14 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
       </Dropdown.Menu>
     </Dropdown>
     <Dropdown className="margin-right-5">
-      <Dropdown.Button flat><BsMemory className="margin-right-5"/> RAM</Dropdown.Button>
-      <Dropdown.Menu aria-label="Dynamic Actions" items={filterdjenerator}>
+      <Dropdown.Button flat css={{ tt: "capitalize" }} ><BsMemory className="margin-right-5"/> RAM | {selectedValue_RAM}</Dropdown.Button>
+      <Dropdown.Menu    aria-label="Dynamic Actions" items={filterdjenerator}
+            allow
+      color="secondary" 
+      selectionMode="single"
+      selectedKeys={selectedRAM}
+      onSelectionChange={setSelectedRAM}
+   items={filterdjenerator}>
         {(item) => (
           <Dropdown.Item
             key={item?.ram}
@@ -90,21 +137,21 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
           </Dropdown.Item>
         )}
       </Dropdown.Menu>
-    </Dropdown>
+    </Dropdown> 
     </>
         </Grid>
         <Grid xs={12}>
           <Grid.Container gap={2} justify="flex-start">
-            {data
-              .filter((val) => {
+            {data.filter((val) => {
                 if (searchval == "") {
                   return val;
                 } else if (
                   val["os"]?.toLowerCase().includes(searchval.toLowerCase())
                 ) {
                   return val;
-                } else {
+                } else { 
                 }
+ 
               })
               .map((item, index) => (
                 <Grid xs={6} sm={3} key={index}>

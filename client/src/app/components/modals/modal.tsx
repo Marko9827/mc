@@ -13,6 +13,7 @@ interface ModalProps {
   footer?: React.ReactElement;
   actionLabel: string;
   disabled?: boolean;
+  className?:"";
   secondaryAction?: () => void;
   secondaryActionLabel?: string;
 }
@@ -22,6 +23,7 @@ const Modal: React.FC<ModalProps> = ({
   onClose,
   onSubmit,
   title,
+  className="",
   body,
   footer,
   actionLabel,
@@ -59,19 +61,7 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <>
     <div
-        className="
-            justify-center
-            items-center
-            flex
-            overflow-x-hidden
-            overflow-y-auto
-            fixed
-            inset-0
-            z-50
-            outline-none
-            focus:outline-none
-            bg-neutral-800/80
-        "
+        className={" justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/80 " + className}
     >
         <div
             className="
@@ -146,7 +136,7 @@ const Modal: React.FC<ModalProps> = ({
                     </div>
 
                     {/* Body */}
-                    <div className="relative p-7 flex-auto">
+                    <div className="relative p-7 flex-auto hmm-overlow">
                         {body}
                     </div>
 

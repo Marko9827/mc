@@ -41,3 +41,14 @@ table tbody tr td:last-child svg {
 .margin-right-5{
     margin-right: 5px;
 }
+
+.margin-left-5 {
+    margin-left: 5px;
+}
+
+.hmm-overlow{
+    overflow: scroll;
+    max-height: 70vh;
+}
+
+
