@@ -29,12 +29,15 @@ con.connect(function (err) {
     console.log("SQL OK.");
   }
 });
+
+const  flname =  Date.now() + '-';
+ 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'public/images/');
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
+    cb(null,  Date.now() + '-' + file.originalname);
   }
 });
  
@@ -79,14 +82,13 @@ app.post("/product_add", upload.single("imagefile"), (req, res) => {
     tsStandard = req.body?.tsStandard,
     authorId = req.body?.authorId | 0,
     price = req.body?.price,
-    description = req.body?.description,
-    image = req.file?.imagefile;
+    description = req.body?.description;
     if(!req.file){
  return  res.send("Error :( - Upload image.");
     }else{
   con.query(
     `INSERT INTO product (os, ram, ssd, screen, networks, category, authorId, price, image, tsStandard, description) VALUES 
-    ('${os}','${ram}', '${ssd}', '${screen}', '${networks}', '${category}', '${authorId}', '${price}', '${image}', '${tsStandard}','${description}');`,
+    ('${os}','${ram}', '${ssd}', '${screen}', '${networks}', '${category}', '${authorId}', '${price}', '${req.file?.filename}', '${tsStandard}','${description}');`,
     (err, result) => {
       if (err) {
         res.send("Error :(");

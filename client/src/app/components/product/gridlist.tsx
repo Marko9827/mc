@@ -20,7 +20,7 @@ import {
   Input,
 } from "@nextui-org/react";
 import { FaBootstrap } from "react-icons/fa";
-import { BsFillDeviceSsdFill,BsMemory,BsWifi,BsPhone,BsCurrencyDollar } from "react-icons/bs";
+import { BsFillDeviceSsdFill,BsReception3,BsMemory,BsWifi,BsPhone,BsCurrencyDollar } from "react-icons/bs";
 
 interface GridListProps {
   currentUser?: User | null;
@@ -88,6 +88,16 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
     },
     [selectedSSD]
   );
+    // LTE
+    const [selectedLTE, setSelectedLTE] = React.useState(new Set([""]));
+
+    const selectedValue_LTE = React.useMemo(
+      () => { 
+        categorytmp(Array.from(selectedLTE).join(", ").replaceAll("_", " "));
+        return  Array.from(selectedLTE).join(", ").replaceAll("_", " ");
+      },
+      [selectedLTE]
+    );
   const functModal = (data: {}) => {
     setDatajs(data);
     setVisible(true);
@@ -143,6 +153,25 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
             color="default"
           >
             {item?.ram}
+          </Dropdown.Item>
+        )}
+      </Dropdown.Menu>
+    </Dropdown> 
+    <Dropdown className="margin-right-5">
+      <Dropdown.Button flat css={{ tt: "capitalize" }} ><BsReception3 className="margin-right-5"/> TEL. Standard | {selectedValue_SSD}</Dropdown.Button>
+      <Dropdown.Menu    aria-label="Dynamic Actions" items={filterdjenerator}
+            allow
+      color="secondary" 
+      selectionMode="single"
+      selectedKeys={selectedLTE}
+      onSelectionChange={setSelectedLTE}
+   items={filterdjenerator}>
+        {(item) => (
+          <Dropdown.Item
+            key={item?.tsStandard}
+            color="default"
+          >
+            {item?.tsStandard}
           </Dropdown.Item>
         )}
       </Dropdown.Menu>
