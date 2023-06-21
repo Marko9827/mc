@@ -40,8 +40,10 @@ const Add_me: React.FC<UserAddProps> = ({ currentUser }) => {
       os: "",
       ram: "",
       ssd: "",
+      name:"",
       screen: "",
       networks: "",
+      description: "",
       category: "",
       authorId: currentUser?.id,
       tsStandard: "",
@@ -60,6 +62,8 @@ const Add_me: React.FC<UserAddProps> = ({ currentUser }) => {
     var_data.append("category", data.category);
     var_data.append("authorId", data.authorId);
     var_data.append("tsStandard", data.tsStandard);
+    var_data.append("description", data.description);    
+    var_data.append("name", data.name);
     var_data.append("price", data.price);
     var_data.append("imagefile", selectedFile);
 
@@ -83,6 +87,16 @@ const Add_me: React.FC<UserAddProps> = ({ currentUser }) => {
       {currentUser?.admin == 1 ? (
         <>
           <Heading title="Mobi E-Katalog" subtitle="Chose your phone  " />
+          <Input
+            id="name"
+            label="Name"
+            placeholder="Name"
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+            type="name"
+            required
+          />
           <Input
             id="os"
             label="Os"

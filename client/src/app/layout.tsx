@@ -4,7 +4,7 @@ import { Container, NextUIProvider } from '@nextui-org/react';
 import ClientOnly from "./components/clientOnly";
 import "./globals.css"; 
 import { Inter } from "next/font/google";
-import Navbar from "./components/navbar/navbar";
+import Navbar from "./components/navbar/navbar"; 
 import getCurrentUser from "./actions/getCurrentUser";
 import LoginModal from     "@/src/app/components/modals/LoginModal";
 import RegisterModal from  "@/src/app/components/modals/Registermodal";
@@ -45,6 +45,8 @@ export default async function RootLayout({
           <Navbar currentUser={currentUser} > 
         
           </Navbar>
+
+        
         <div className="container_fixed">
           <GridList     />  
         </div>

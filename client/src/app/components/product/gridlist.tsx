@@ -20,7 +20,7 @@ import {
   Input,
 } from "@nextui-org/react";
 import { FaBootstrap } from "react-icons/fa";
-import { BsFillDeviceSsdFill,BsReception3,BsMemory,BsWifi,BsPhone,BsCurrencyDollar } from "react-icons/bs";
+import { BsFillDeviceSsdFill,BsFillInfoCircleFill,BsReception3,BsMemory,BsWifi,BsPhone,BsCurrencyDollar } from "react-icons/bs";
 
 interface GridListProps {
   currentUser?: User | null;
@@ -33,6 +33,7 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
   const [searchval, setSearchval] = useState("");
   const [filter_ssd, setFilter_ssd] = useState("");
   const [filter_ram, setFilter_ram] = useState("");
+  const [filter_lte, setFilter_lte] = useState("");
   const [filter_os, setFilter_os] = useState("");
   const { setVisible, bindings } = useModal();
 
@@ -51,21 +52,27 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
       });
   }, []);
   
- const categorytmp = (ram = "") => { 
-  axios.get("http://localhost:3001/products/"+String(ram))
-  .then((response) => {
-    const jsonData = response.data;
-    setData(jsonData); 
-  })
-  .catch((error) => {
-    console.error("Error fetching data:", error);
-  });  
-}
+  const categorytmp = (os = "",ram = "",lte = "") => { 
+    const rr = "http://localhost:3001/productsf?os="+os+"&ram="+ram+"&tsStandard="+lte;
+    axios.get(rr)
+    .then((response) => {
+      const jsonData = response.data;
+      setData(jsonData); 
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });  
+  }
 
   const [selectedOS, setSelectedOS] = React.useState(new Set([""]));
 
   const selectedValue_OS = React.useMemo(
-    () => Array.from(selectedOS).join(", ").replaceAll("_", " "),
+    () => { 
+      setFilter_os(Array.from(selectedOS).join(", ").replaceAll("_", " "));
+      categorytmp(filter_os, filter_ram, filter_lte);
+
+      return  Array.from(selectedOS).join(", ").replaceAll("_", " ")
+    },
     [selectedOS]
   );
   // RAM
@@ -73,7 +80,8 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
 
   const selectedValue_RAM = React.useMemo(
     () => { 
-      categorytmp(Array.from(selectedRAM).join(", ").replaceAll("_", " "));
+      setFilter_ram(Array.from(selectedRAM).join(", ").replaceAll("_", " "));
+      categorytmp(filter_os, filter_ram, filter_lte);
       return  Array.from(selectedRAM).join(", ").replaceAll("_", " ");
     },
     [selectedRAM]
@@ -83,7 +91,8 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
 
   const selectedValue_SSD = React.useMemo(
     () => { 
-      categorytmp(Array.from(selectedSSD).join(", ").replaceAll("_", " "));
+      // categorytmp(filter_ram, filter_lte);
+
       return  Array.from(selectedSSD).join(", ").replaceAll("_", " ");
     },
     [selectedSSD]
@@ -93,11 +102,16 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
 
     const selectedValue_LTE = React.useMemo(
       () => { 
-        categorytmp(Array.from(selectedLTE).join(", ").replaceAll("_", " "));
+        setFilter_lte(Array.from(selectedLTE).join(", ").replaceAll("_", " "));
+        categorytmp(filter_os, filter_ram, filter_lte);
+
         return  Array.from(selectedLTE).join(", ").replaceAll("_", " ");
       },
       [selectedLTE]
     );
+
+    
+ 
   const functModal = (data: {}) => {
     setDatajs(data);
     setVisible(true);
@@ -158,7 +172,7 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
       </Dropdown.Menu>
     </Dropdown> 
     <Dropdown className="margin-right-5">
-      <Dropdown.Button flat css={{ tt: "capitalize" }} ><BsReception3 className="margin-right-5"/> TEL. Standard | {selectedValue_SSD}</Dropdown.Button>
+      <Dropdown.Button flat css={{ tt: "capitalize" }} ><BsReception3 className="margin-right-5"/> TEL. Standard | {selectedValue_LTE}</Dropdown.Button>
       <Dropdown.Menu    aria-label="Dynamic Actions" items={filterdjenerator}
             allow
       color="secondary" 
@@ -259,8 +273,14 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
                     <Table.Row key="2">
                       <Table.Cell>Screen</Table.Cell>
                       <Table.Cell>
-                    <BsPhone /> {datajs?.screen}</Table.Cell>
+                      <BsPhone /> {datajs?.screen}</Table.Cell>
                     </Table.Row> 
+                    <Table.Row key="2">
+                      <Table.Cell>Description</Table.Cell>
+                      <Table.Cell>
+                      <BsFillInfoCircleFill /> {datajs?.description}</Table.Cell>
+                    </Table.Row> 
+                     
                     <Table.Row key="2">
                       <Table.Cell>Networks</Table.Cell>
                       <Table.Cell><BsWifi/> {datajs?.networks}</Table.Cell>
