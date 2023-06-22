@@ -75,4 +75,21 @@ table tbody tr td:last-child svg {
     }
     }.z-index-ismodal {
         z-index: 3333;
-    }
+    }@media (min-width: 650px) {
+        .nextui-grid-container .nextui-grid-item  { 
+        }
+    
+            .nextui-grid-container .nextui-grid-item button:first-child{
+                margin-top:15px !important;
+            }
+        .nextui-grid-container .nextui-grid-item button{
+            
+            margin:10px !important;
+        }
+    }@media (min-width: 650px){
+        .nextui-input-container {
+            min-width:150px !important;
+        }
+        }.z-index-ismodal {
+            z-index: 3333;
+        }

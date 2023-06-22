@@ -53,19 +53,27 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
   }, []);
   
   const categorytmp = (os = "",ram = "",lte = "") => { 
-    const rr = "http://localhost:3001/productsf";
-    const form = new FormData();
-    form.append("os",os);
-    form.append("ram",ram);
-    form.append("tsStandard",lte);
-    axios.post(rr, form) 
+  
+    const rr = "http://localhost:3001/products_filter/";
+    const var_form = new FormData();
+
+    var_form.append("os", `${os}`);
+    var_form.append("ram",`${ram}`);
+    var_form.append("tsStandard",`${lte}`);
+    console.clear();
+    console.log(os,ram,lte);
+    axios.post(rr, {
+      "os": `${os}`,
+      "ram": `${ram}`,
+      "tsStandard": `${lte}`
+    }) 
     .then((response) => {
       const jsonData = response.data;
       setData(jsonData); 
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
-    });  
+    });   
   }
 
   const [selectedOS, setSelectedOS] = React.useState(new Set([""]));
@@ -73,7 +81,11 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
   const selectedValue_OS = React.useMemo(
     () => { 
       setFilter_os(Array.from(selectedOS).join(", ").replaceAll("_", " "));
-      categorytmp(filter_os, filter_ram, filter_lte);
+      categorytmp(
+        Array.from(selectedOS).join(", ").replaceAll("_", " "),
+        filter_ram,
+        filter_lte
+        );
 
       return  Array.from(selectedOS).join(", ").replaceAll("_", " ")
     },
@@ -85,7 +97,11 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
   const selectedValue_RAM = React.useMemo(
     () => { 
       setFilter_ram(Array.from(selectedRAM).join(", ").replaceAll("_", " "));
-      categorytmp(filter_os, filter_ram, filter_lte);
+      categorytmp(
+        filter_os, 
+        Array.from(selectedRAM).join(", ").replaceAll("_", " "), 
+        filter_lte
+        );
       return  Array.from(selectedRAM).join(", ").replaceAll("_", " ");
     },
     [selectedRAM]
@@ -95,7 +111,7 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
 
   const selectedValue_SSD = React.useMemo(
     () => { 
-      // categorytmp(filter_ram, filter_lte);
+      // catego _ rytmp(filter_ram, filter_lte);
 
       return  Array.from(selectedSSD).join(", ").replaceAll("_", " ");
     },
@@ -107,7 +123,11 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
     const selectedValue_LTE = React.useMemo(
       () => { 
         setFilter_lte(Array.from(selectedLTE).join(", ").replaceAll("_", " "));
-        categorytmp(filter_os, filter_ram, filter_lte);
+        categorytmp(
+          filter_os, 
+          filter_ram, 
+          Array.from(selectedLTE).join(", ").replaceAll("_", " ")
+          );
 
         return  Array.from(selectedLTE).join(", ").replaceAll("_", " ");
       },

@@ -55,18 +55,24 @@ app.get("/productsk/:ram", (req, res) => {
     }
   });
 });
-app.post("/productsf", (req, res) => {
-  const { id , tsStandard , os, ram  } = req.body;
-    var osf = decodeURIComponent(os);
-    con.query(`SELECT * FROM product where ram='${ram}' OR os='${os}' OR tsStandard LIKE '${tsStandard}' ORDER BY price DESC`,
-      function (err, result) {
-        if (err) {
-          console.log(err);
-        } else {
-          res.send(result);
-        }
-      }
-    );
+app.post("/products_filter", (req, res) => {
+  var tsStandard = req.body?.tsStandard,
+    os = req.body?.os,
+    ram = req.body?.ram;
+
+  var querySQL = `SELECT * FROM product where ram='${ram}' AND os='${os}' AND tsStandard LIKE '${tsStandard}' ORDER BY price DESC`;
+ 
+
+  console.clear();
+  // return res.send(querySQL);
+  console.log(os, ram, tsStandard);
+  con.query(querySQL, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
 });
 app.get("/products/", (req, res) => {
   con.query(
@@ -109,4 +115,3 @@ app.use(express.static("public/images"));
 app.listen(PORT, () => {
   console.log(`Server start at http://localhost:${PORT}/`);
 });
-

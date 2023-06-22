@@ -82,43 +82,16 @@ useEffect(() => {
           <Navbar.Content enableCursorHighlight hideIn="xs" variant="underline">
              {currentUser ? (
                             <>
-                            {currentUser.admin == 1 ? (<>  <Navbar.Link  
+                            {currentUser.admin == 1 ? (<>  
+                            <Navbar.Item>
+                              <Button  
                     onClick={add_me.onOpen}
-                    className="
-                        hidden
-                        md:block
-                        text-sm
-                        font-semibold
-                        py-4
-                        px-4
-                        rounded-full
-                        hover:bg-neutral-200
-                        transition
-                        cursor-pointer                   
-                    "
+                     
                 >
                   Add new phone
-                </Navbar.Link> </>) : (<></>)}
-           </> ):(<>
-            <Navbar.Item  
-                    onClick={() => { }}
-                    className="
-                        hidden
-                        md:block
-                        text-sm
-                        font-semibold
-                        py-4
-                        px-4
-                        rounded-full
-                        hover:bg-neutral-200
-                        transition
-                        cursor-pointer                   
-                    "
-                >
-                Phone catalog
-                </Navbar.Item>
-
-           </>) }
+                  </Button>
+                </Navbar.Item> </>) : (<></>)}
+           </> ):(<>  </>) }
           </Navbar.Content>
           {!currentUser ? (
           <Navbar.Content>
