@@ -100,7 +100,7 @@ useEffect(() => {
                   Add new phone
                 </Navbar.Link> </>) : (<></>)}
            </> ):(<>
-            <Navbar.Link  
+            <Navbar.Item  
                     onClick={() => { }}
                     className="
                         hidden
@@ -116,15 +116,15 @@ useEffect(() => {
                     "
                 >
                 Phone catalog
-                </Navbar.Link>
+                </Navbar.Item>
 
            </>) }
           </Navbar.Content>
           {!currentUser ? (
           <Navbar.Content>
-            <Navbar.Link color="inherit" onClick={loginModal.onOpen}>
+            <Navbar.Item  onClick={loginModal.onOpen}>
               Login
-            </Navbar.Link>
+            </Navbar.Item>
             <Navbar.Item>
               <Button auto flat onClick={registerModal.onOpen}>
                 Sign Up

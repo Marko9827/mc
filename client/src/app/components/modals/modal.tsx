@@ -61,7 +61,7 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <>
     <div
-        className={" justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/80 " + className}
+        className={"z-index-ismodal justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/80 " + className}
     >
         <div
             className="

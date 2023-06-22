@@ -53,8 +53,12 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
   }, []);
   
   const categorytmp = (os = "",ram = "",lte = "") => { 
-    const rr = "http://localhost:3001/productsf?os="+os+"&ram="+ram+"&tsStandard="+lte;
-    axios.get(rr)
+    const rr = "http://localhost:3001/productsf";
+    const form = new FormData();
+    form.append("os",os);
+    form.append("ram",ram);
+    form.append("tsStandard",lte);
+    axios.post(rr, form) 
     .then((response) => {
       const jsonData = response.data;
       setData(jsonData); 
@@ -168,14 +172,16 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
       selectedKeys={selectedRAM}
       onSelectionChange={setSelectedRAM}
    items={filterdjenerator}>
-        {(item) => (
+    
+        {[...Array(13)].map((x, i) =>(
+      
           <Dropdown.Item
-            key={item?.ram}
+            key={i}
             color="default"
           >
-            {item?.ram}
+            {i}
           </Dropdown.Item>
-        )}
+        ))}
       </Dropdown.Menu>
     </Dropdown> 
     <Dropdown className="margin-right-5">
@@ -217,12 +223,12 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
                   <Tooltip
                     placement="bottom"
                     color="invert"
-                    content={"Show more information for " + item["os"]}
+                    content={"Show more information for " + item["name"]}
                   >
                     <CardUI2
                       onClick={() => functModal(item)}
                       image={item["image"]}
-                      os={item["os"]}
+                      os={item["name"]}
                       screen={item["screen"]}
                       price={item["price"]}
                     />
