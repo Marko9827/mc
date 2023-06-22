@@ -57,10 +57,8 @@ app.get("/productsk/:ram", (req, res) => {
 });
 app.get("/productsf", (req, res) => {
   const { id , tsStandard , os, ram  } = req.query;
-   
- 
-
-    con.query(`SELECT * FROM product where ram='${ram}' OR os='${os}' OR id='${id}' OR tsStandard='${tsStandard}' ORDER BY price DESC`,
+  
+    con.query(`SELECT * FROM product where ram='${ram}' OR os='${os}' OR id='${id}' OR tsStandard LIKE '%${tsStandard}%' ORDER BY price DESC`,
       function (err, result) {
         if (err) {
           console.log(err);
@@ -111,3 +109,4 @@ app.use(express.static("public/images"));
 app.listen(PORT, () => {
   console.log(`Server start at http://localhost:${PORT}/`);
 });
+

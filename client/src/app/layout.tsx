@@ -12,6 +12,7 @@ import ToasterProvider from "./components/toast";
 import Add_me from "./components/modals/mobile_modals/add_me";
 import GridList from './components/product/gridlist';
 import Modal from '@nextui-org/react';
+import Navbar3 from './components/navbar/navbar2';
  const inter = Inter({ subsets: ["latin"] });
 
  
@@ -42,9 +43,11 @@ export default async function RootLayout({
   ) : (<>
     {currentUser.admin == 1 ? (<><Add_me currentUser={currentUser}></Add_me></>):(<></>)}
   </>)}
-          <Navbar currentUser={currentUser} > 
+    
+<Navbar3 currentUser={currentUser}></Navbar3>        
+          {/* <Navbar currentUser={currentUser} > 
         
-          </Navbar>
+          </Navbar> */}
 
         
         <div className="container_fixed">

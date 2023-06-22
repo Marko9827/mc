@@ -110,7 +110,14 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
       [selectedLTE]
     );
 
-    
+    const filterdjeneratorLTE = [
+     {"tsStandard":"GPRS"},
+     {"tsStandard":"HSDPA"},
+     {"tsStandard":"HSUPA"},
+     {"tsStandard":"HSPA+"},
+     {"tsStandard":"DC-HSPA+"},
+     {"tsStandard":"LTE"} 
+    ];
  
   const functModal = (data: {}) => {
     setDatajs(data);
@@ -179,7 +186,7 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
       selectionMode="single"
       selectedKeys={selectedLTE}
       onSelectionChange={setSelectedLTE}
-   items={filterdjenerator}>
+   items={filterdjeneratorLTE}>
         {(item) => (
           <Dropdown.Item
             key={item?.tsStandard}
@@ -194,7 +201,7 @@ const GridList: React.FC<GridListProps> = ({ currentUser }) => {
         </Grid>
         <Grid xs={12}>
           <Grid.Container gap={2} justify="flex-start">
-            {data.filter((val) => {
+            {data?.filter((val) => {
                 if (searchval == "") {
                   return val;
                 } else if (

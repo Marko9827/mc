@@ -18,6 +18,7 @@ const Navbar : React.FC<NavbarProps> = ({
 }) => {
  
     return (
+        <>
         <div className="fixed w-full bg-white z-10 shadow-sm fixed_top">
             <div className="
             py-1 border-b-[2px]">
@@ -44,6 +45,7 @@ const Navbar : React.FC<NavbarProps> = ({
            
             </div>
         </div>
+        </>
     )
 }
 export default Navbar
